@@ -1,0 +1,89 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f8;
+    padding: 40px;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+form {
+    display: inline-block;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    transition: all 0.3s ease-in-out;
+}
+
+form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 32px;
+    margin-bottom: 80px;  /* Added space below the heading */
+    margin-top: 50;        /* Removed any space above the heading */
+    font-weight: 600;
+}
+
+input[type="text"], input[type="number"], input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+input[type="submit"] {
+    background-color: #27ae60;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #2ecc71;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 6px;
+    text-align: left;
+    display: block;
+}
+
+input[type="text"], input[type="number"] {
+    background-color: #f9f9f9;
+}
+
+input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 26px; /* Smaller font size on smaller screens */
+    }
+
+    form {
+        padding: 20px; /* Less padding for smaller screens */
+    }
+
+    body {
+        padding: 20px;
+    }
+}
