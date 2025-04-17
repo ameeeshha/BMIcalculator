@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        input[type="text"], input[type="number"], input[type="submit"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #27ae60;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2ecc71;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #27ae60;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .past-records {
+            margin-top: 40px;
+        }
+
+        .past-records table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .past-records th, .past-records td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .past-records th {
+            background-color: #f2f2f2;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <form action="/" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="height">Height (in meters):</label>
+            <input type="text" id="height" name="height" required>
+
+            <label for="weight">Weight (in kg):</label>
+            <input type="text" id="weight" name="weight" required>
+
+            <input type="submit" value="Calculate BMI">
+        </form>
+
+        {% if bmi %}
+        <div class="result">
+            <p>Hello {{ name }}, your BMI is {{ bmi }} and you are {{ status }}.</p>
+        </div>
+        {% endif %}
+
+        <div class="past-records">
+            <h3>Past BMI Records</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Height</th>
+                        <th>Weight</th>
+                        <th>BMI</th>
+                        <th>Status</th>
+                        <th>Action</th>  <!-- New column for delete button -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in past_records %}
+                    <tr>
+                        <td>{{ record[1] }}</td> <!-- Name -->
+                        <td>{{ record[2] }}</td> <!-- Age -->
+                        <td>{{ record[3] }}</td> <!-- Height -->
+                        <td>{{ record[4] }}</td> <!-- Weight -->
+                        <td>{{ record[5] }}</td> <!-- BMI -->
+                        <td>{{ record[6] }}</td> <!-- Status -->
+                        <td>
+                            <a href="{{ url_for('delete_record', id=record[0]) }}">
+                                <button class="delete-btn">Delete</button>
+                            </a>
+                        </td>  <!-- Delete button -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="
